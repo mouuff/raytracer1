@@ -1,0 +1,14 @@
+/*
+** display.c for disp in /home/alies_a/rendu/gfx_raytracer1/src/display
+** 
+** Made by alies_a
+** Login   <alies_a@epitech.net>
+** 
+** Started on  Fri Jan 29 19:00:03 2016 alies_a
+** Last update Fri Jan 29 19:00:22 2016 alies_a
+*/
+
+void	display(t_data *data)
+{
+  
+}

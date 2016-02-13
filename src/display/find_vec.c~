@@ -1,0 +1,26 @@
+/*
+** find_vec.c for find vec in /home/alies_a/rendu/gfx_raytracer1
+** 
+** Made by alies_a
+** Login   <alies_a@epitech.net>
+** 
+** Started on  Mon Feb  8 23:26:02 2016 alies_a
+** Last update Mon Feb  8 23:53:09 2016 alies_a
+*/
+
+#include "rt.h"
+
+t_vec	center_vec(const t_hit *hit)
+{
+  return (vec_unit(&((hit->obj)->pos), &(hit->hitpos)));
+}
+
+t_vec	up_vec(const t_hit *hit)
+{
+  
+}
+
+t_vec	get_unit_vec(t_hit *hit)
+{
+  
+}

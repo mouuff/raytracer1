@@ -1,0 +1,15 @@
+/*
+** scal.c for scal in /home/alies_a/rendu/gfx_raytracer1
+** 
+** Made by alies_a
+** Login   <alies_a@epitech.net>
+** 
+** Started on  Sun Feb  7 15:03:33 2016 alies_a
+** Last update Sun Feb  7 15:03:57 2016 alies_a
+*/
+
+float	scal(const t_vec *a,
+	     const t_vec *b)
+{
+  
+}
