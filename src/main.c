@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 **
 ** Started on  Wed Dec  2 20:18:06 2015 Arnaud Alies
-** Last update Sat Feb 13 11:24:11 2016 alies_a
+** Last update Sun Feb 14 19:16:27 2016 alies_a
 */
 
 #include <lapin.h>
@@ -15,7 +15,7 @@ void	init_cam(t_cam *cam)
 {
   cam->alpha = M_PI;
   cam->beta = 0;
-  (cam->pos).x = 10;
+  (cam->pos).x = 15;
   (cam->pos).y = 0;
   (cam->pos).z = 9;
 }

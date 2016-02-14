@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Fri Jan 29 14:18:35 2016 alies_a
-** Last update Sat Feb 13 11:49:20 2016 alies_a
+** Last update Sun Feb 14 19:44:58 2016 alies_a
 */
 
 #ifndef RT_H_
@@ -18,8 +18,12 @@
 #define FOVY (1)
 #define DIST (0.5)
 
+/*
+** light variables
+** ambiant / diffusion
+*/
 #define DIFF (0.7)
-#define AMBI (50)
+#define AMBI (0.25)
 
 #define MAP(x, sA, eA, sB, eB) ((((sA - x) / (sA - eA)) * (eB - sB)) + sB)
 #define ABS(x) ((x) < 0 ? -(x) : (x))
@@ -28,9 +32,9 @@
 
 typedef struct s_vec
 {
-  float x;
-  float y;
-  float z;
+  double x;
+  double y;
+  double z;
 } t_vec;
 
 typedef struct s_ray
@@ -41,9 +45,9 @@ typedef struct s_ray
 
 typedef struct s_cam
 {
-  float	alpha;
-  float beta;
-  t_vec pos;
+  double	alpha;
+  double 	beta;
+  t_vec		pos;
 } t_cam;
 
 /*
@@ -52,10 +56,10 @@ typedef struct s_cam
 
 typedef struct s_obj
 {
-  char	type;
-  t_vec pos;
-  float	size;
-  t_color color;
+  char		type;
+  t_vec		pos;
+  double	size;
+  t_color	color;
 } t_obj;
 
 typedef struct s_objs
@@ -72,7 +76,7 @@ typedef struct s_hit
 {
   const t_obj	*obj;
   t_vec		hitpos;
-  float		norm;
+  double	norm;
   int		hit;
 } t_hit;
 
@@ -82,12 +86,12 @@ typedef struct s_hit
 
 typedef struct s_cal
 {
-  float a;
-  float b;
-  float c;
-  float d;
-  float t1;
-  float t2;
+  double	a;
+  double	b;
+  double	c;
+  double	d;
+  double	t1;
+  double	t2;
 } t_cal;
 
 /*
@@ -99,9 +103,9 @@ typedef t_vec(*t_uni)(const t_hit *hit);
 
 typedef struct s_shader
 {
-  t_func func;
-  t_uni uni;
-  char type;
+  char		type;
+  t_func	func;
+  t_uni		uni;
 } t_shader;
 
 t_func	get_func(char type);
@@ -136,8 +140,8 @@ void    tekpixel(t_bunny_pixelarray *pix,
 void	display(t_data *data);
 
 int     is_visible(const t_ray *screen, const t_hit *hit);
-float   det(float a, float b, float c);
-t_ray   equ_para(const t_ray *ray, float t1, float t2);
+double	det(double a, double b, double c);
+t_ray   equ_para(const t_ray *ray, double t1, double t2);
 
 t_hit	get_closest_obj(const t_data *data, const t_ray *ray);
 void	render(const t_data *data,
@@ -147,8 +151,8 @@ void	shadow(const t_data *data,
 	       const t_hit *hit,
 	       t_color *color);
 
-float   vec_norm(const t_vec *Va, const t_vec *Vb);
-float   vec_scal(const t_vec *a, const t_vec *b);
+double	vec_norm(const t_vec *Va, const t_vec *Vb);
+double	vec_scal(const t_vec *a, const t_vec *b);
 t_vec   vec_unit(const t_vec *a, const t_vec *b);
 
 /*

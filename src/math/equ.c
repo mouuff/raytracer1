@@ -5,18 +5,18 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Fri Jan 29 14:48:16 2016 alies_a
-** Last update Sat Jan 30 11:09:17 2016 alies_a
+** Last update Sun Feb 14 19:41:26 2016 alies_a
 */
 
 #include <math.h>
 #include "rt.h"
 
-float   det(float a, float b, float c)
+double   det(double a, double b, double c)
 {
-  return (powf(b, 2) - (4 * a * c));
+  return (pow(b, 2) - (4 * a * c));
 }
 
-t_ray	equ_para(const t_ray *ray, float t1, float t2)
+t_ray	equ_para(const t_ray *ray, double t1, double t2)
 {
   t_ray	res;
 

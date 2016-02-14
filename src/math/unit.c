@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Mon Feb  8 13:19:07 2016 alies_a
-** Last update Sat Feb 13 11:28:20 2016 alies_a
+** Last update Sun Feb 14 19:34:41 2016 alies_a
 */
 
 #include <math.h>
@@ -21,17 +21,17 @@ int     get_uni_vec(const t_hit *hit, t_vec *vec)
   return (0);
 }
 
-t_vec	vec_unit(const t_vec *a, const t_vec *b)
+t_vec		vec_unit(const t_vec *a, const t_vec *b)
 {
-  t_vec	res;
-  float	n;
+  t_vec		res;
+  double	n;
 
   res.x = b->x - a->x;
   res.y = b->y - a->y;
   res.z = b->z - a->z;
-  n = sqrtf((res.x * res.x) +
-	    (res.y * res.y) +
-	    (res.z * res.z));
+  n = sqrt((res.x * res.x) +
+	   (res.y * res.y) +
+	   (res.z * res.z));
   res.x /= n;
   res.y /= n;
   res.z /= n;

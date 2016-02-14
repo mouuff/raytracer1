@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Sat Feb 13 11:26:13 2016 alies_a
-** Last update Sat Feb 13 11:45:25 2016 alies_a
+** Last update Sun Feb 14 19:41:12 2016 alies_a
 */
 
 float   vec_scal(const t_vec *a,
@@ -30,7 +30,6 @@ t_color         shine(const t_data *data,
     return (res);
   light_vec =  vec_unit(&(data->light), &(hit->hitpos));
   prod = vec_scal(&light_vec, &obj_vec);
-
   prod = (prod < 0 ? 0 : prod);
   prod = (prod > DIFF ? DIFF : prod);
   res.argb[0] = MAP((float)prod, 0, DIFF, ((hit->obj)->color).argb[0], 0);

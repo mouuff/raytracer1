@@ -5,24 +5,24 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Fri Jan 29 19:00:03 2016 alies_a
-** Last update Sat Feb 13 11:48:40 2016 alies_a
+** Last update Sun Feb 14 19:40:43 2016 alies_a
 */
 
 #include <lapin.h>
 #include <math.h>
 #include "rt.h"
 
-static void    get_ray(const t_cam *me,
-		       const t_bunny_position *sr,
-		       t_ray *ray)
+static void	get_ray(const t_cam *me,
+			const t_bunny_position *sr,
+			t_ray *ray)
 {
-  t_vec res;
-  float beta;
+  t_vec		res;
+  double	beta;
 
   beta = -me->beta;
   res.x = DIST;
-  res.y = FOVX * (((WIDTH / 2) - (float)sr->x) / WIDTH);
-  res.z = FOVY * (((HEIGHT / 2) - (float)sr->y) / HEIGHT);
+  res.y = FOVX * (((WIDTH / 2) - (double)sr->x) / WIDTH);
+  res.z = FOVY * (((HEIGHT / 2) - (double)sr->y) / HEIGHT);
   ray->beta.x = res.x * cos(beta) + res.z * sin(beta);
   ray->beta.z = res.z * cos(beta) - res.x * sin(beta);
   res.x = ray->beta.x;

@@ -5,15 +5,15 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Sun Jan 31 14:03:13 2016 alies_a
-** Last update Sat Feb 13 10:55:13 2016 alies_a
+** Last update Sun Feb 14 19:37:27 2016 alies_a
 */
 
 #include "rt.h"
 
-t_hit	plane_z(const t_ray *ray, const t_obj *obj)
+t_hit		plane_z(const t_ray *ray, const t_obj *obj)
 {
-  t_hit	res;
-  float	k;
+  t_hit		res;
+  double	k;
 
   k = (ray->alpha).z / -(ray->beta).z;
   res.hitpos.x = ((ray->beta).x * k + (ray->alpha).x);
