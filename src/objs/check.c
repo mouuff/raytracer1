@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Sat Jan 30 22:22:32 2016 alies_a
-** Last update Sun Feb 14 19:45:09 2016 alies_a
+** Last update Sun Feb 14 20:57:11 2016 alies_a
 */
 
 #include "rt.h"
@@ -13,7 +13,7 @@
 t_shader shaders[] =
   {{'s', &sphere, &center_vec},
    {'z', &plane_z, &up_vec},
-   {'c', &cylinder, &center_vec},
+   {'c', &cylinder, &cyl_vec},
    {0, NULL, NULL}};
 
 t_func  get_func(char type)

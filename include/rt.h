@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Fri Jan 29 14:18:35 2016 alies_a
-** Last update Sun Feb 14 19:44:58 2016 alies_a
+** Last update Mon Feb 15 19:02:45 2016 alies_a
 */
 
 #ifndef RT_H_
@@ -22,8 +22,12 @@
 ** light variables
 ** ambiant / diffusion
 */
+
+#define LIGHT (0.9)
 #define DIFF (0.7)
 #define AMBI (0.25)
+#define PHONG (0.8)
+#define PHONG_POW (32)
 
 #define MAP(x, sA, eA, sB, eB) ((((sA - x) / (sA - eA)) * (eB - sB)) + sB)
 #define ABS(x) ((x) < 0 ? -(x) : (x))
@@ -144,12 +148,16 @@ double	det(double a, double b, double c);
 t_ray   equ_para(const t_ray *ray, double t1, double t2);
 
 t_hit	get_closest_obj(const t_data *data, const t_ray *ray);
+
 void	render(const t_data *data,
 	       const t_hit *hit,
 	       t_color *color);
-void	shadow(const t_data *data,
+int	shadow(const t_data *data,
 	       const t_hit *hit,
 	       t_color *color);
+void	phong(const t_data *data,
+	      const t_hit *hit,
+	      t_color *color);
 
 double	vec_norm(const t_vec *Va, const t_vec *Vb);
 double	vec_scal(const t_vec *a, const t_vec *b);
@@ -169,5 +177,6 @@ t_hit   cylinder(const t_ray *ray, const t_obj *obj);
 
 t_vec   center_vec(const t_hit *hit);
 t_vec   up_vec(const t_hit *hit);
+t_vec   cyl_vec(const t_hit *hit);
 
 #endif

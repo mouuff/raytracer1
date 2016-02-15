@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 **
 ** Started on  Wed Dec  2 20:18:06 2015 Arnaud Alies
-** Last update Sun Feb 14 19:16:27 2016 alies_a
+** Last update Mon Feb 15 19:14:29 2016 alies_a
 */
 
 #include <lapin.h>
@@ -23,7 +23,7 @@ void	init_cam(t_cam *cam)
 int	init_obj(t_data *data)
 {
   
-  (data->light).x = 0;
+  (data->light).x = 15;
   (data->light).y = 5;
   (data->light).z = 10.5;
   
@@ -48,23 +48,23 @@ int	init_obj(t_data *data)
   ((data->objs).objs)[2].size = 3;
   ((data->objs).objs)[2].type = 's';
   (((data->objs).objs)[2].pos).x = 0;
-  (((data->objs).objs)[2].pos).y = 2;
-  (((data->objs).objs)[2].pos).z = 4;
+  (((data->objs).objs)[2].pos).y = 4;
+  (((data->objs).objs)[2].pos).z = 3;
   (((data->objs).objs)[2].color).full = BLUE;
   
   ((data->objs).objs)[3].size = 1;
   ((data->objs).objs)[3].type = 'c';
   (((data->objs).objs)[3].pos).x = 2;
-  (((data->objs).objs)[3].pos).y = 8;
+  (((data->objs).objs)[3].pos).y = 10;
   (((data->objs).objs)[3].pos).z = 8;
-  (((data->objs).objs)[3].color).full = PINK;
+  (((data->objs).objs)[3].color).full = GREEN;
 
   ((data->objs).objs)[4].size = 0.5;
   ((data->objs).objs)[4].type = 's';
   (((data->objs).objs)[4].pos).x = 0;
   (((data->objs).objs)[4].pos).y = 0;
   (((data->objs).objs)[4].pos).z = 0;
-  (((data->objs).objs)[4].color).full = YELLOW;
+  (((data->objs).objs)[4].color).full = GREEN;
   
   //(data->objs).nb = 3;
   return (0);

@@ -5,36 +5,30 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Sat Feb 13 11:26:13 2016 alies_a
-** Last update Sun Feb 14 19:41:12 2016 alies_a
+** Last update Mon Feb 15 18:57:58 2016 alies_a
 */
 
-float   vec_scal(const t_vec *a,
-		 const t_vec *b)
-{
-  float res;
+#include <math.h>
+#include "rt.h"
 
-  res = (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
-  return (res);
-}
-
-t_color         shine(const t_data *data,
-		      const t_hit *hit)
+void            phong(const t_data *data,
+		      const t_hit *hit,
+		      t_color *color)
 {
-  t_color       res;
   t_vec         obj_vec;
   t_vec         light_vec;
-  float         prod;
+  double        prod;
 
-  res.full = BLACK;
   if (get_uni_vec(hit, &obj_vec))
-    return (res);
+    return ;
   light_vec =  vec_unit(&(data->light), &(hit->hitpos));
-  prod = vec_scal(&light_vec, &obj_vec);
+  prod = -vec_scal(&light_vec, &obj_vec);
+  if (prod < 0)
+    return ;
+  prod = pow(prod, PHONG_POW);
   prod = (prod < 0 ? 0 : prod);
-  prod = (prod > DIFF ? DIFF : prod);
-  res.argb[0] = MAP((float)prod, 0, DIFF, ((hit->obj)->color).argb[0], 0);
-  res.argb[1] = MAP((float)prod, 0, DIFF, ((hit->obj)->color).argb[1], 0);
-  res.argb[2] = MAP((float)prod, 0, DIFF, ((hit->obj)->color).argb[2], 0);
-  res.argb[3] = 255;
-  return (res);
+  prod = (prod > PHONG ? PHONG : prod);
+  color->argb[0] = (255 - color->argb[0]) * prod + color->argb[0];
+  color->argb[1] = (255 - color->argb[1]) * prod + color->argb[1];
+  color->argb[2] = (255 - color->argb[2]) * prod + color->argb[2];
 }

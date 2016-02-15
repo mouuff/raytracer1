@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Thu Feb 11 18:23:42 2016 alies_a
-** Last update Sun Feb 14 19:23:14 2016 alies_a
+** Last update Mon Feb 15 17:37:21 2016 alies_a
 */
 
 #include "rt.h"
@@ -17,7 +17,7 @@ static void	ambient(t_color *color)
   (color->argb)[2] *= AMBI;
 }
 
-void		shadow(const t_data *data,
+int		shadow(const t_data *data,
 		       const t_hit *hit,
 		       t_color *color)
 {
@@ -30,8 +30,12 @@ void		shadow(const t_data *data,
   if (!new.hit)
     {
       ambient(color);
-      return ;
+      return (1);
     }
   if (new.obj != hit->obj)
-    ambient(color);
+    {
+      ambient(color);
+      return (1);
+    }
+  return (0);
 }

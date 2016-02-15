@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Fri Jan 29 19:00:03 2016 alies_a
-** Last update Sun Feb 14 19:40:43 2016 alies_a
+** Last update Mon Feb 15 19:13:41 2016 alies_a
 */
 
 #include <lapin.h>
@@ -67,11 +67,18 @@ void		set_pix(t_data *data, t_bunny_position *pos)
   color.full = BLACK;
   get_ray(&(data->cam), pos, &ray);
   hit = get_closest_obj(data, &ray);
-  if (hit.norm > 0 && hit.norm < 100 && hit.hit)
+  if (hit.norm > 0 && hit.norm < 1000 && hit.hit)
     {
       color = hit.obj->color;
-      render(data, &hit, &color);
-      shadow(data, &hit, &color);
+      color.argb[0] *= LIGHT;
+      color.argb[1] *= LIGHT;
+      color.argb[2] *= LIGHT;
+      
+      if (!shadow(data, &hit, &color))
+	{
+	  render(data, &hit, &color);
+	  phong(data, &hit, &color);
+	}
       //debug
       if (pos->x == WIDTH / 2 && pos->y == HEIGHT / 2)
 	{

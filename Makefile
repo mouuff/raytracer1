@@ -5,7 +5,7 @@
 ## Login   <alies_a@epitech.net>
 ## 
 ## Started on  Fri Jan 29 14:31:30 2016 alies_a
-## Last update Sat Feb 13 11:19:30 2016 alies_a
+## Last update Mon Feb 15 17:23:22 2016 alies_a
 ##
 
 NAME    =       rt1
@@ -16,11 +16,12 @@ LIB	=	./lib/
 
 INC	=	./include/
 
-CFLAGS	=	-I/home/${USER}/.froot/include \
-		-L/home/${USER}/.froot/lib \
-		-llapin -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system -lstdc++ -ldl -lm \
-		-I$(INC) \
+CFLAGS	=	-I$(INC) \
 		-W -Wall -Wextra
+
+LDFLAGS	=	-I/home/${USER}/.froot/include \
+                -L/home/${USER}/.froot/lib \
+                -llapin -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system -lstdc++ -ldl -lm
 
 SRC	=	./src/
 
@@ -42,6 +43,7 @@ SRCS	=	$(SRC)main.c \
 		$(DISP)display.c \
 		$(DISP)render.c \
 		$(DISP)shadow.c \
+		$(DISP)shine.c \
 		$(OBJ)uni.c \
 		$(OBJ)check.c \
 		$(OBJ)sphere.c \
@@ -62,7 +64,7 @@ RM	=	rm -f
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-		$(CC) $(OBJS) -o $(NAME) $(CFLAGS)
+		$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
 
 clean:
 		$(RM) $(OBJS)
