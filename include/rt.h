@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Fri Jan 29 14:18:35 2016 alies_a
-** Last update Mon Feb 15 19:02:45 2016 alies_a
+** Last update Tue Feb 16 13:15:42 2016 alies_a
 */
 
 #ifndef RT_H_
@@ -14,8 +14,6 @@
 #define WIDTH (500)
 #define HEIGHT (500)
 #define FPS (5)
-#define FOVX (1)
-#define FOVY (1)
 #define DIST (0.5)
 
 /*
@@ -23,16 +21,17 @@
 ** ambiant / diffusion
 */
 
-#define LIGHT (0.9)
-#define DIFF (0.7)
-#define AMBI (0.25)
-#define PHONG (0.8)
-#define PHONG_POW (32)
+#define LIGHT (0.85)
+#define DIFF (1)
+#define AMBI (0.20)
+#define PHONG (0.95)
+#define PHONG_POW (40)
 
 #define MAP(x, sA, eA, sB, eB) ((((sA - x) / (sA - eA)) * (eB - sB)) + sB)
 #define ABS(x) ((x) < 0 ? -(x) : (x))
 
 #include <lapin.h>
+#include "tek.h"
 
 typedef struct s_vec
 {
@@ -130,13 +129,6 @@ typedef struct s_data
   t_objs		objs;
 } t_data;
 
-t_color	get_pixel(const t_bunny_pixelarray *pix,
-		  t_bunny_position *pos);
-
-void    tekpixel(t_bunny_pixelarray *pix,
-		 t_bunny_position *pos,
-		 t_color *color);
-
 /*
 ** math
 */
@@ -145,7 +137,7 @@ void	display(t_data *data);
 
 int     is_visible(const t_ray *screen, const t_hit *hit);
 double	det(double a, double b, double c);
-t_ray   equ_para(const t_ray *ray, double t1, double t2);
+t_vec   equ_para(const t_ray *ray, double t1);
 
 t_hit	get_closest_obj(const t_data *data, const t_ray *ray);
 

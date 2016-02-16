@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Fri Jan 29 14:40:57 2016 alies_a
-** Last update Sun Feb 14 19:39:17 2016 alies_a
+** Last update Tue Feb 16 12:00:38 2016 alies_a
 */
 
 #include <math.h>
@@ -13,24 +13,18 @@
 
 static void	set_hit_info(t_hit *hit,
 			     const t_vec *start,
-			     const t_ray *res,
 			     const t_obj *obj)
 {
-  double	alpha;
-  double	beta;
-
-  alpha = vec_norm(start, &(res->alpha));
-  beta = vec_norm(start, &(res->beta));
-  hit->norm = (alpha > beta ? beta : alpha);
-  hit->hitpos = (alpha > beta ? res->beta : res->alpha);
+  hit->norm = vec_norm(start, &(hit->hitpos));
   hit->obj = obj;
+  hit->hit = 1;
 }
 
-t_hit	sphere(const t_ray *ray, const t_obj *obj)
+t_hit		sphere(const t_ray *ray, const t_obj *obj)
 {
-  t_hit	res;
-  t_ray intsec;
-  t_cal calc;
+  double	k;
+  t_hit		res;
+  t_cal 	calc;
 
   calc.a = (pow((ray->beta).x, 2) + pow((ray->beta).y, 2) +
 	    pow((ray->beta).z, 2));
@@ -46,11 +40,12 @@ t_hit	sphere(const t_ray *ray, const t_obj *obj)
   res.hit = 0;
   if (calc.d < 0)
     return (res);
-  res.hit = 1;
   calc.t1 = (-calc.b + sqrt(calc.d)) / (2 * calc.a);
   calc.t2 = (-calc.b - sqrt(calc.d)) / (2 * calc.a);
-  intsec = equ_para(ray, calc.t1, calc.t2);
-  set_hit_info(&res, &(ray->alpha), &intsec, obj);
-  res.hit = (is_visible(ray, &res) ? 1 : 0);
+  if (calc.t1 < 0 || calc.t2 < 0)
+    return (res);
+  k = (calc.t1 > calc.t2 ? calc.t2 : calc.t1);
+  res.hitpos = equ_para(ray, k);
+  set_hit_info(&res, &(ray->alpha), obj);
   return (res);
 }

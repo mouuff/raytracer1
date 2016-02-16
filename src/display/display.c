@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Fri Jan 29 19:00:03 2016 alies_a
-** Last update Mon Feb 15 19:13:41 2016 alies_a
+** Last update Tue Feb 16 13:12:42 2016 alies_a
 */
 
 #include <lapin.h>
@@ -20,9 +20,9 @@ static void	get_ray(const t_cam *me,
   double	beta;
 
   beta = -me->beta;
-  res.x = DIST;
-  res.y = FOVX * (((WIDTH / 2) - (double)sr->x) / WIDTH);
-  res.z = FOVY * (((HEIGHT / 2) - (double)sr->y) / HEIGHT);
+  res.x = sqrt(pow(HEIGHT, 2) + pow(WIDTH, 2));
+  res.y = ((WIDTH / 2) - (double)sr->x);
+  res.z = ((HEIGHT / 2) - (double)sr->y);
   ray->beta.x = res.x * cos(beta) + res.z * sin(beta);
   ray->beta.z = res.z * cos(beta) - res.x * sin(beta);
   res.x = ray->beta.x;
@@ -73,12 +73,14 @@ void		set_pix(t_data *data, t_bunny_position *pos)
       color.argb[0] *= LIGHT;
       color.argb[1] *= LIGHT;
       color.argb[2] *= LIGHT;
+
       
       if (!shadow(data, &hit, &color))
 	{
 	  render(data, &hit, &color);
 	  phong(data, &hit, &color);
 	}
+      
       //debug
       if (pos->x == WIDTH / 2 && pos->y == HEIGHT / 2)
 	{

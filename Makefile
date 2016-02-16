@@ -5,7 +5,7 @@
 ## Login   <alies_a@epitech.net>
 ## 
 ## Started on  Fri Jan 29 14:31:30 2016 alies_a
-## Last update Mon Feb 15 17:23:22 2016 alies_a
+## Last update Tue Feb 16 13:02:09 2016 alies_a
 ##
 
 NAME    =       rt1
@@ -33,8 +33,11 @@ MATH	=	./src/math/
 
 DISP	=	./src/display/
 
+TCORE	=	./tcore/
+
 SRCS	=	$(SRC)main.c \
-		$(SRC)tekpixel.c \
+		$(TCORE)tekpixel.c \
+		$(TCORE)tekray.c \
 		$(MATH)equ.c \
 		$(MATH)norm.c \
 		$(MATH)visible.c \

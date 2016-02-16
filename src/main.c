@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 **
 ** Started on  Wed Dec  2 20:18:06 2015 Arnaud Alies
-** Last update Mon Feb 15 19:14:29 2016 alies_a
+** Last update Tue Feb 16 13:11:20 2016 alies_a
 */
 
 #include <lapin.h>
@@ -15,7 +15,7 @@ void	init_cam(t_cam *cam)
 {
   cam->alpha = M_PI;
   cam->beta = 0;
-  (cam->pos).x = 15;
+  (cam->pos).x = 30;
   (cam->pos).y = 0;
   (cam->pos).z = 9;
 }
@@ -23,9 +23,9 @@ void	init_cam(t_cam *cam)
 int	init_obj(t_data *data)
 {
   
-  (data->light).x = 15;
-  (data->light).y = 5;
-  (data->light).z = 10.5;
+  (data->light).x = 10;
+  (data->light).y = 10;
+  (data->light).z = 10;
   
   (data->objs).nb = 5;
   if (((data->objs).objs = malloc(sizeof(t_obj) * (data->objs).nb)) == NULL)
