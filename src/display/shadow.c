@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Thu Feb 11 18:23:42 2016 alies_a
-** Last update Mon Feb 15 17:37:21 2016 alies_a
+** Last update Mon Mar  7 13:47:43 2016 alies_a
 */
 
 #include "rt.h"
@@ -24,8 +24,8 @@ int		shadow(const t_data *data,
   t_hit		new;
   t_ray		ray;
 
-  ray.alpha = data->light;
-  ray.beta = vec_unit(&(data->light), &(hit->hitpos));
+  ray.alpha = (data->objs).light;
+  ray.beta = vec_unit(&(data->objs.light), &(hit->hitpos));
   new = get_closest_obj(data, &ray);
   if (!new.hit)
     {

@@ -5,7 +5,7 @@
 ## Login   <alies_a@epitech.net>
 ## 
 ## Started on  Fri Jan 29 14:31:30 2016 alies_a
-## Last update Tue Feb 16 13:02:09 2016 alies_a
+## Last update Mon Mar  7 13:41:59 2016 alies_a
 ##
 
 NAME    =       rt1
@@ -35,7 +35,13 @@ DISP	=	./src/display/
 
 TCORE	=	./tcore/
 
+PARSE	=	./src/parse/
+
 SRCS	=	$(SRC)main.c \
+		$(PARSE)load_ini.c \
+		$(PARSE)load_objs.c \
+		$(PARSE)load_item.c \
+		$(PARSE)load_def.c \
 		$(TCORE)tekpixel.c \
 		$(TCORE)tekray.c \
 		$(MATH)equ.c \
@@ -48,6 +54,7 @@ SRCS	=	$(SRC)main.c \
 		$(DISP)shadow.c \
 		$(DISP)shine.c \
 		$(OBJ)uni.c \
+		$(OBJ)texture.c \
 		$(OBJ)check.c \
 		$(OBJ)sphere.c \
 		$(OBJ)cylinder.c \
@@ -58,7 +65,8 @@ SRCS	=	$(SRC)main.c \
 		$(MY)my_strcpy.c \
 		$(MY)my_strdup.c \
 		$(MY)my_strlen.c \
-		$(MY)my_str_to_nbr.c
+		$(MY)my_str_to_nbr.c \
+		$(MY)my_memset.c
 
 OBJS	=	$(SRCS:.c=.o)
 

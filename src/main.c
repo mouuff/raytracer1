@@ -5,105 +5,35 @@
 ** Login   <alies_a@epitech.net>
 **
 ** Started on  Wed Dec  2 20:18:06 2015 Arnaud Alies
-** Last update Tue Feb 16 13:11:20 2016 alies_a
+** Last update Mon Mar  7 15:37:42 2016 alies_a
 */
 
 #include <lapin.h>
 #include "rt.h"
 
-void	init_cam(t_cam *cam)
+int	init_all(t_data *data)
 {
-  cam->alpha = M_PI;
-  cam->beta = 0;
-  (cam->pos).x = 30;
-  (cam->pos).y = 0;
-  (cam->pos).z = 9;
-}
-
-int	init_obj(t_data *data)
-{
-  
-  (data->light).x = 10;
-  (data->light).y = 10;
-  (data->light).z = 10;
-  
-  (data->objs).nb = 5;
-  if (((data->objs).objs = malloc(sizeof(t_obj) * (data->objs).nb)) == NULL)
+  if (load_ini("maps/test.ini", &(data->objs)))
     return (1);
-  
-  ((data->objs).objs)[0].size = 4;
-  ((data->objs).objs)[0].type = 'z';
-  (((data->objs).objs)[0].pos).x = 0;
-  (((data->objs).objs)[0].pos).y = 0;
-  (((data->objs).objs)[0].pos).z = 0;
-  (((data->objs).objs)[0].color).full = WHITE;
-  
-  ((data->objs).objs)[1].size = 4;
-  ((data->objs).objs)[1].type = 's';
-  (((data->objs).objs)[1].pos).x = 0;
-  (((data->objs).objs)[1].pos).y = -4;
-  (((data->objs).objs)[1].pos).z = 4;
-  (((data->objs).objs)[1].color).full = RED;
-  
-  ((data->objs).objs)[2].size = 3;
-  ((data->objs).objs)[2].type = 's';
-  (((data->objs).objs)[2].pos).x = 0;
-  (((data->objs).objs)[2].pos).y = 4;
-  (((data->objs).objs)[2].pos).z = 3;
-  (((data->objs).objs)[2].color).full = BLUE;
-  
-  ((data->objs).objs)[3].size = 1;
-  ((data->objs).objs)[3].type = 'c';
-  (((data->objs).objs)[3].pos).x = 2;
-  (((data->objs).objs)[3].pos).y = 10;
-  (((data->objs).objs)[3].pos).z = 8;
-  (((data->objs).objs)[3].color).full = GREEN;
-
-  ((data->objs).objs)[4].size = 0.5;
-  ((data->objs).objs)[4].type = 's';
-  (((data->objs).objs)[4].pos).x = 0;
-  (((data->objs).objs)[4].pos).y = 0;
-  (((data->objs).objs)[4].pos).z = 0;
-  (((data->objs).objs)[4].color).full = GREEN;
-  
-  //(data->objs).nb = 3;
   return (0);
 }
 
-void	move(t_data *data)
+void		move(t_data *data)
 {
+  t_objs	*objs;
+
+  objs = &(data->objs);
   if (data->keys != NULL)
     {
       if (data->keys[BKS_UP])
-	(data->cam).beta += 0.05;
+	(objs->cam).beta += 0.05;
       if (data->keys[BKS_DOWN])
-	(data->cam).beta -= 0.05;
+	(objs->cam).beta -= 0.05;
       if (data->keys[BKS_RIGHT])
-	(data->cam).alpha -= 0.05;
+	(objs->cam).alpha -= 0.05;
       if (data->keys[BKS_LEFT])
-	(data->cam).alpha += 0.05;
-      if (data->keys[BKS_Q])
-        {
-	  //(((data->objs).objs)[1].pos).z += 0.1;
-	  (data->light).x -= 0.2;
-	}
-      if (data->keys[BKS_D])
-        {
-	  //(((data->objs).objs)[1].pos).z += 0.1;
-	  (data->light).x += 0.2;
-	}
-      if (data->keys[BKS_S])
-        {
-	  //(((data->objs).objs)[1].pos).z += 0.1;
-	  (data->light).y -= 0.2;
-	}
-      if (data->keys[BKS_Z])
-        {
-	  //(((data->objs).objs)[1].pos).z += 0.1;
-	  (data->light).y += 0.2;
-	}
+	(objs->cam).alpha += 0.05;
     }
-  //printf("%f %f\n", (data->cam).alpha, (data->cam).beta);
 }
 
 t_bunny_response key_listenner(t_bunny_event_state state,
@@ -127,40 +57,11 @@ static t_bunny_response	loop(void *data_pt)
   zero.x = 0;
   zero.y = 0;
   data = (t_data*)data_pt;
-  /*
-  (((data->objs).objs)[4].pos).x = data->light.x;
-  (((data->objs).objs)[4].pos).y = data->light.y;
-  (((data->objs).objs)[4].pos).z = data->light.z;
-  */
   move(data);
   display(data);
   bunny_blit(&((data->win)->buffer), &((data->pix)->clipable), &zero);
   bunny_display(data->win);
   return (GO_ON);
-}
-
-void	test()
-{
-  t_hit hit;
-  t_ray ray;
-  t_obj obj;
-
-  obj.size = 4.5;
-  (obj.pos).x = 0;
-  (obj.pos).y = 0;
-  (obj.pos).z = 0;
-  
-  (ray.alpha).x = 4;
-  (ray.alpha).y = 0;
-  (ray.alpha).z = 3;
-  
-  (ray.beta).x = 0;
-  (ray.beta).y = 0;
-  (ray.beta).z = -2;
-  
-  hit = sphere(&ray, &obj);
-  printf("%f %f %f\n", (hit.hitpos).x, (hit.hitpos).y, (hit.hitpos).z);
-  printf("%f\n", (hit.norm));
 }
 
 int		main(int ac, char **av)
@@ -170,9 +71,8 @@ int		main(int ac, char **av)
   (void)ac;
   (void)av;
   data.keys = NULL;
-  init_cam(&(data.cam));
-  init_obj(&data);
-  test();
+  if (init_all(&data))
+    return (1);
   if ((data.pix = bunny_new_pixelarray(WIDTH, HEIGHT)) == NULL)
     return (1);
   if ((data.win = bunny_start(WIDTH, HEIGHT, false, "ray")) == NULL)

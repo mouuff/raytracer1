@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Fri Jan 29 14:18:35 2016 alies_a
-** Last update Tue Feb 16 13:15:42 2016 alies_a
+** Last update Mon Mar  7 13:57:04 2016 alies_a
 */
 
 #ifndef RT_H_
@@ -21,11 +21,13 @@
 ** ambiant / diffusion
 */
 
+#define VIEW_RANGE (90)
 #define LIGHT (0.85)
 #define DIFF (1)
-#define AMBI (0.20)
+#define AMBI (0.15)
 #define PHONG (0.95)
 #define PHONG_POW (40)
+#define SIZE_GRID (4)
 
 #define MAP(x, sA, eA, sB, eB) ((((sA - x) / (sA - eA)) * (eB - sB)) + sB)
 #define ABS(x) ((x) < 0 ? -(x) : (x))
@@ -69,6 +71,8 @@ typedef struct s_objs
 {
   int	nb;
   t_obj	*objs;
+  t_vec	light;
+  t_cam	cam;
 } t_objs;
 
 /*
@@ -124,8 +128,6 @@ typedef struct s_data
   t_bunny_window	*win;
   t_bunny_pixelarray	*pix;
   const bool		*keys;
-  t_vec			light;
-  t_cam			cam;
   t_objs		objs;
 } t_data;
 
@@ -170,5 +172,25 @@ t_hit   cylinder(const t_ray *ray, const t_obj *obj);
 t_vec   center_vec(const t_hit *hit);
 t_vec   up_vec(const t_hit *hit);
 t_vec   cyl_vec(const t_hit *hit);
+
+/*
+** texture
+*/
+
+void    grid_texture(const t_data *data,
+		     const t_hit *hit,
+		     t_color *color);
+
+/*
+** parsing
+*/
+
+void    load_def(t_bunny_ini_scope *scope,
+		 t_objs *objs);
+void    load_item(const t_bunny_ini_scope *scope,
+		  t_obj *obj);
+int	load_objs(t_bunny_ini *ini,
+		  t_objs *objs);
+int	load_ini(const char *file, t_objs *objs);
 
 #endif

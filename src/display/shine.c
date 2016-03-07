@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Sat Feb 13 11:26:13 2016 alies_a
-** Last update Mon Feb 15 18:57:58 2016 alies_a
+** Last update Mon Mar  7 13:48:06 2016 alies_a
 */
 
 #include <math.h>
@@ -21,7 +21,7 @@ void            phong(const t_data *data,
 
   if (get_uni_vec(hit, &obj_vec))
     return ;
-  light_vec =  vec_unit(&(data->light), &(hit->hitpos));
+  light_vec = vec_unit(&((data->objs).light), &(hit->hitpos));
   prod = -vec_scal(&light_vec, &obj_vec);
   if (prod < 0)
     return ;
