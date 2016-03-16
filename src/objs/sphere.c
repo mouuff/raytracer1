@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Fri Jan 29 14:40:57 2016 alies_a
-** Last update Tue Feb 16 12:00:38 2016 alies_a
+** Last update Mon Mar  7 17:16:39 2016 alies_a
 */
 
 #include <math.h>
@@ -22,7 +22,6 @@ static void	set_hit_info(t_hit *hit,
 
 t_hit		sphere(const t_ray *ray, const t_obj *obj)
 {
-  double	k;
   t_hit		res;
   t_cal 	calc;
 
@@ -44,8 +43,7 @@ t_hit		sphere(const t_ray *ray, const t_obj *obj)
   calc.t2 = (-calc.b - sqrt(calc.d)) / (2 * calc.a);
   if (calc.t1 < 0 || calc.t2 < 0)
     return (res);
-  k = (calc.t1 > calc.t2 ? calc.t2 : calc.t1);
-  res.hitpos = equ_para(ray, k);
+  res.hitpos = equ_para(ray, (calc.t1 > calc.t2 ? calc.t2 : calc.t1));
   set_hit_info(&res, &(ray->alpha), obj);
   return (res);
 }

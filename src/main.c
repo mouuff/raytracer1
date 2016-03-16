@@ -5,15 +5,15 @@
 ** Login   <alies_a@epitech.net>
 **
 ** Started on  Wed Dec  2 20:18:06 2015 Arnaud Alies
-** Last update Mon Mar  7 15:37:42 2016 alies_a
+** Last update Mon Mar  7 16:51:15 2016 alies_a
 */
 
-#include <lapin.h>
 #include "rt.h"
+#include "my.h"
 
-int	init_all(t_data *data)
+int	init_all(t_data *data, const char *file)
 {
-  if (load_ini("maps/test.ini", &(data->objs)))
+  if (load_ini(file, &(data->objs)))
     return (1);
   return (0);
 }
@@ -71,8 +71,11 @@ int		main(int ac, char **av)
   (void)ac;
   (void)av;
   data.keys = NULL;
-  if (init_all(&data))
-    return (1);
+  if (init_all(&data, (ac > 1 ? av[1] : "maps/default.ini")))
+    {
+      my_putstr("File loading failed.\n");
+      return (1);
+    }
   if ((data.pix = bunny_new_pixelarray(WIDTH, HEIGHT)) == NULL)
     return (1);
   if ((data.win = bunny_start(WIDTH, HEIGHT, false, "ray")) == NULL)

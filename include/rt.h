@@ -5,14 +5,14 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Fri Jan 29 14:18:35 2016 alies_a
-** Last update Mon Mar  7 13:57:04 2016 alies_a
+** Last update Mon Mar  7 16:55:56 2016 alies_a
 */
 
 #ifndef RT_H_
 #define RT_H_
 
-#define WIDTH (500)
-#define HEIGHT (500)
+#define WIDTH (1000)
+#define HEIGHT (1000)
 #define FPS (5)
 #define DIST (0.5)
 

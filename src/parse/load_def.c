@@ -5,28 +5,23 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Mon Mar  7 13:37:38 2016 alies_a
-** Last update Mon Mar  7 15:29:23 2016 alies_a
+** Last update Mon Mar  7 17:04:27 2016 alies_a
 */
 
 #include "rt.h"
+#include "my.h"
 
 static void	set_def(t_objs *objs)
 {
-  ((objs->cam).pos).x = 5;
-  ((objs->cam).pos).y = 5;
-  ((objs->cam).pos).z = 5;
-  (objs->cam).alpha = 0;
-  (objs->cam).beta = 0;
-  (objs->light).x = 0;
-  (objs->light).y = 0;
-  (objs->light).z = 0;
+  my_memset(&(objs->cam), 0, sizeof(t_cam));
+  my_memset(&(objs->light), 0, sizeof(t_vec));
 }
 
 void		load_def(t_bunny_ini_scope *scope,
 			 t_objs *objs)
 {
   const char	*buff;
-  
+
   set_def(objs);
   if ((buff = bunny_ini_scope_get_field(scope, "pos", 0)) != NULL)
     ((objs->cam).pos).x = my_str_to_nbr(buff);

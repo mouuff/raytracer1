@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Sat Feb  6 10:09:20 2016 alies_a
-** Last update Tue Feb 16 12:01:13 2016 alies_a
+** Last update Mon Mar  7 17:17:24 2016 alies_a
 */
 
 #include <math.h>
@@ -23,7 +23,6 @@ static void	set_hit_info(t_hit *hit,
 t_hit		cylinder(const t_ray *ray, const t_obj *obj)
 {
   t_hit		res;
-  double	k;
   t_cal		calc;
 
   if ((ray->beta).x == 0 && (ray->beta).y == 0)
@@ -44,8 +43,7 @@ t_hit		cylinder(const t_ray *ray, const t_obj *obj)
   calc.t2 = (-calc.b - sqrt(calc.d)) / (2 * calc.a);
   if (calc.t1 < 0 || calc.t2 < 0)
     return (res);
-  k = (calc.t1 > calc.t2 ? calc.t2 : calc.t1);
-  res.hitpos = equ_para(ray, k);
+  res.hitpos = equ_para(ray, (calc.t1 > calc.t2 ? calc.t2 : calc.t1));
   set_hit_info(&res, &(ray->alpha), obj);
   return (res);
 }

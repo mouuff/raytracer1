@@ -5,7 +5,7 @@
 ** Login   <alies_a@epitech.net>
 ** 
 ** Started on  Fri Jan 29 19:00:03 2016 alies_a
-** Last update Mon Mar  7 13:46:24 2016 alies_a
+** Last update Mon Mar  7 16:52:33 2016 alies_a
 */
 
 #include <lapin.h>
@@ -80,27 +80,6 @@ void		set_pix(t_data *data, t_bunny_position *pos)
 	  render(data, &hit, &color);
 	  phong(data, &hit, &color);
 	}
-      
-      //debug
-      if (pos->x == WIDTH / 2 && pos->y == HEIGHT / 2)
-	{
-	  color.full = RED;
-	  if (data->keys != NULL && (data->keys)[BKS_O])
-	    {
-	      if (hit.obj != &(((data->objs).objs)[3]))
-		{
-		  (((data->objs).objs)[3].pos).x = (hit.hitpos).x;
-		  (((data->objs).objs)[3].pos).y = (hit.hitpos).y;
-		  (((data->objs).objs)[3].pos).z = (hit.hitpos).z;
-		}
-	      printf("------\n");
-	      printf("Real : %f %f %f\n", (hit.hitpos).x, (hit.hitpos).y, (hit.hitpos).z);
-	      printf("Obj  : %f %f %f\n", (hit.obj)->pos.x, (hit.obj)->pos.y, (hit.obj)->pos.z);
-	      printf("Norm : %f\n", (hit.norm));
-	      printf("------\n");
-	    }
-	}
-      //end debug
     }
   tekpixel(data->pix, pos, &color);
 }
